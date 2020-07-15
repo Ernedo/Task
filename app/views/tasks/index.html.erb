@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Year</th>
+      <th>Month</th>
+      <th>Numberofemployer</th>
+      <th>Numberodd</th>
+      <th>ID</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= task.surname %></td>
+        <td><%= task.year %></td>
+        <td><%= task.month %></td>
+        <td><%= task.numberofemployer %></td>
+        <td><%= task.numberodd %></td>
+        <td>
+          <%= task.surname.slice(0,2).to_s + task.name.slice(0,2).to_s + 
+           if (((((task.year.to_s + task.month.to_s + task.numberofemployer.to_s).split(//).map(&:to_i).select(&:even?).sum) - ((task.year.to_s + task.month.to_s + task.numberofemployer.to_s).split(//).map(&:to_i).select(&:odd?).sum)).abs ) > 9).to_s
+          
+           
+          task.numberodd = (((((task.year.to_s + task.month.to_s + task.numberofemployer.to_s).split(//).map(&:to_i).select(&:even?).sum) - ((task.year.to_s + task.month.to_s + task.numberofemployer.to_s).split(//).map(&:to_i).select(&:odd?).sum)).abs ) % 10).to_s
+
+        else
+          ((((task.year.to_s + task.month.to_s + task.numberofemployer.to_s).split(//).map(&:to_i).select(&:even?).sum) - ((task.year.to_s + task.month.to_s + task.numberofemployer.to_s).split(//).map(&:to_i).select(&:odd?).sum)).abs.to_s )
+        end
+
+
+             %>
+        </td>
+
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task', new_task_path %>

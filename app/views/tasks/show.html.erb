@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @task.name %>
+</p>
+
+<p>
+  <strong>Surname:</strong>
+  <%= @task.surname %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @task.year %>
+</p>
+
+<p>
+  <strong>Month:</strong>
+  <%= @task.month %>
+</p>
+
+<p>
+  <strong>Numberofemployer:</strong>
+  <%= @task.numberofemployer %>
+</p>
+
+<p>
+  <strong>OddNumber:</strong>
+  <%= @task.numberodd %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
